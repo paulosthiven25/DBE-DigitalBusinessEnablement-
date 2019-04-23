@@ -1,0 +1,74 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+	<title>Cadastro de Cliente</title>
+</head>
+<body>
+	<h1>Cadastro de cliente</h1>
+	
+	<h:messages/>
+	
+	<h:form>
+		<div>
+			<h:outputLabel value="Nome" for="nome"/>
+			<h:inputText id="nome"
+				value="#{clienteBean.cliente.nome}"/>
+		</div>
+		<div>
+			<h:outputLabel value="Altura" for="altura"/>
+			<h:inputText id="altura"
+				value="#{clienteBean.cliente.altura}"/>
+		</div>
+		<div>
+			<h:selectBooleanCheckbox id="ativo"
+				value="#{clienteBean.cliente.ativo}"/>
+			<h:outputLabel value="Ativo" for="ativo"/>
+		</div>
+		<div>
+			<h:outputLabel value="Categoria" for="cat"/>
+			<h:selectOneMenu id="cat" 
+				value="#{clienteBean.cliente.categoria}">
+				<f:selectItem itemValue="Bronze" itemLabel="Bronze"/>
+				<f:selectItem itemValue="Prata" itemLabel="Prata"/>
+				<f:selectItem itemValue="Ouro" itemLabel="Ouro"/>
+			</h:selectOneMenu>
+		</div>
+		<h:commandButton value="Cadastrar" 
+					actionListener="#{clienteBean.cadastrar}"/>
+	</h:form>
+	
+	<h2>Clientes</h2>
+	
+	<h:dataTable value="#{clienteBean.listar()}" var="cli">
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			#{cli.nome}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Altura</f:facet>
+			#{cli.altura}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Ativo</f:facet>
+			#{cli.ativo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Categoria</f:facet>
+			#{cli.categoria}
+		</h:column>
+	</h:dataTable>
+	
+</body>
+</html>
+
+
+
+
+
