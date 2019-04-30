@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="title">Lista de Onibus</ui:define>
+	<ui:define name="content">
+		<h:link outcome="cadastro-onibus">Cadastrar</h:link>
+		
+		<h:messages styleClass="alert alert-success" style="list-style:none;"/>
+		
+		<h:dataTable var="o" value="#{onibusBean.listar()}" styleClass="table">
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			#{o.nome}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Data Fabricação</f:facet>
+			<h:outputText value="#{o.dataFabricacao.time}">
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Operando</f:facet>
+			#{o.operando?"Sim":"Não"}
+		</h:column>
+		<h:column>
+			<h:form>
+				
+				<h:commandButton styleClass="btn btn-sm btn-primary" 
+										value="Atualizar" action="cadastro-onibus">
+					<f:setPropertyActionListener value="#{o}" target="#{onibusBean.onibus}"/>
+				</h:commandButton>
+				
+				<h:commandButton styleClass="btn btn-sm btn-danger ml-2"
+					value="Remover" action="#{onibusBean.excluir(o.id)}"/>
+											
+			</h:form>
+		</h:column>
+	</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

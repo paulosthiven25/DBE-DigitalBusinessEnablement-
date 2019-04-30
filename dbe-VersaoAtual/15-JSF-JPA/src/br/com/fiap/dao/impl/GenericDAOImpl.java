@@ -6,12 +6,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.com.fiap.dao.GenericDAO;
+import br.com.fiap.entity.Onibus;
 import br.com.fiap.exception.CodigoInexistenteException;
 import br.com.fiap.exception.CommitException;
 
 public abstract class GenericDAOImpl<T,K> implements GenericDAO<T, K>{
 
-	private EntityManager em;
+	protected EntityManager em;
 	
 	private Class<T> clazz;
 	
@@ -59,6 +60,8 @@ public abstract class GenericDAOImpl<T,K> implements GenericDAO<T, K>{
 				"from "+ clazz.getName(),clazz)
 				.getResultList();
 	}
+	
+	
 
 }
 

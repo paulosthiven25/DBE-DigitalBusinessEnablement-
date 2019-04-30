@@ -17,6 +17,8 @@ public interface GenericDAO<T,K> {
 	
 	List<T> listar();
 	
+	List<T> retornarPorNome(String nome);
+	
 	void commit() throws CommitException ;
 	
 }
