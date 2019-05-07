@@ -9,11 +9,14 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="title">Cadastro de Onibus</ui:define>
 	<ui:define name="content">
+	
+	<f:loadBundle var="v" basename="valores"></f:loadBundle>
+	
 		<h:messages styleClass="alert alert-danger"/>
 		<h:form>
 			<h:inputHidden value="#{onibusBean.onibus.id}"/>
 			<div class="form-group">
-				<h:outputLabel value="Nome" for="nome" />
+				<h:outputLabel value="#{v.lbl_name}" for="nome" />
 				<h:inputText value="#{onibusBean.onibus.nome}" id="nome"
 					required="true" requiredMessage="Nome obrigatório"
 					styleClass="form-control" validator="#{onibusBean.validaRepeticaoNome}">
@@ -24,7 +27,7 @@
 				<h:message for="nome" styleClass="text-danger"/>
 			</div>
 			<div class="form-group">
-				<h:outputLabel value="Data Fabricação" for="data" />
+				<h:outputLabel value="#{v.lbl_assembly_date}" for="data" />
 				<h:inputText styleClass="form-control"					
 					value="#{onibusBean.onibus.dataFabricacao.time}" id="data">
 					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
@@ -35,12 +38,12 @@
 			<div class="form-check">
 				<h:selectBooleanCheckbox value="#{onibusBean.onibus.operando}"
 					id="op" />
-				<h:outputLabel value="Operando" for="op" />
+				<h:outputLabel value="#{v.lbl_operation}" for="op" />
 			</div>
-			<h:commandButton value="Salvar" styleClass="btn btn-success"
+			<h:commandButton value="#{v.btn_save}" styleClass="btn btn-success"
 				action="#{onibusBean.cadastrar}" />
 			
-			<h:link outcome="lista-onibus" styleClass="btn btn-primary ml-2">Lista</h:link>
+			<h:link outcome="lista-onibus" styleClass="btn btn-primary ml-2">#{v.btn_list}</h:link>
 				
 		</h:form>
 	</ui:define>

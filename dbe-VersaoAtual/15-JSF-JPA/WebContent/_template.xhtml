@@ -2,9 +2,11 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title><ui:insert name="title">Default title</ui:insert></title>
+<f:loadBundle var="v" basename="valores"></f:loadBundle>
+	<title><ui:insert name="title">#{v.page_title}</ui:insert></title>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
 </h:head>
 
@@ -46,7 +48,7 @@
 </nav>
 
 	<div class="container">
-	<h1>Teste</h1>
+	<h1>#{v.page_title}</h1>
 		<ui:insert name="content"></ui:insert>
 	</div>
 
@@ -54,4 +56,5 @@
 <h:outputScript library="js" name="bootstrap.min.js"/>
 
 </h:body>
+
 </html>
