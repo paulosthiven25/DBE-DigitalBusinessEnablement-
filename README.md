@@ -1,2 +1,2 @@
 # DBE-DigitalBusinessEnablement-
--Repositório referente aos exercícios da matéria de DigitalBusinessEnablement da faculdade
+-Repositório referente as workspaces com exercicios da matéria de DigitalBusinessEnablement da faculdade
