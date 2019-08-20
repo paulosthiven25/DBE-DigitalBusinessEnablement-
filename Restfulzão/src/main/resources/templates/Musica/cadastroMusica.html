@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Cadastro de Musicas</h1>
+<p th:text="${msg}"></p>
+
+<form action="/musica/cadastrar" method="post">
+    <div>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+    </div>
+
+    <div>
+        <label for="duracao">Duração</label>
+        <input type="number"  min="50" max="1000" name="duracao" id="duracao">
+    </div>
+
+    <div>
+        <label for="compositor">Compositor</label>
+        <input type="text" name="compositor" id="compositor">
+    </div>
+
+    <button value="Cadastrar">Cadastrar</button>
+
+
+</form>
+</body>
+</html>
