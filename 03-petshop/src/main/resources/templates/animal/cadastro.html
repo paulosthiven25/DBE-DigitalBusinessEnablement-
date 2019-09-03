@@ -9,8 +9,10 @@
 <body>
 
     <div layout:fragment="corpo">
-        <div class="alert alert-success" th:text="${msg}"></div>
+
         <form th:action="@{/animal/cadastrar}" method="post" th:object="${animal}">
+
+
             <div class="form-group">
                 <label>Nome</label>
                 <input type="text" th:field="*{nome}" class="form-control">

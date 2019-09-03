@@ -16,4 +16,6 @@ public interface AnimalRepository
     //Pesquisar os animais por parte do nome e raça
     List<Animal> findByNomeContainsAndRacaContains(String nome, String raca);
 
+    List<Animal> findByRaca(String raca);
+
 }

@@ -9,17 +9,69 @@
 <body>
 <div class="container" layout:fragment="corpo">
     <h1>Lista de Pets</h1>
+
+    <div class="alert alert-success" th:if="${msg != null}" th:text="${msg}">
+
+    </div>
+
+
+    <form th:action="@{/animal/listaRaca}">
+        <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input name="consulta" id="text" placeholder="Consultar" type="text" class="form-control">
+            <input type="submit" class="btn btn-warning">
+
+        </div>
+    </form>
+
+
     <table class="table table-bordered table-striped">
         <tr>
             <th>Nome</th>
             <th>Raça</th>
             <th>Castrado</th>
+
         </tr>
         <tr th:each="lista:${lista}">
             <td th:text="${lista.nome}"></td>
             <td th:text="${lista.raca}"></td>
             <td th:text="${lista.castrado?'Sim':'Não'}"></td>
+            <td>
+                <a th:href="@{/animal/editar/}+${lista.codigo}"
+                   class="btn btn-outline-primary">Editar</a>
+                <button th:onclick="|codigo.value = ${lista.codigo}|"  type="button" class="btn btn-sm btn-outline-danger btn-primary" data-toggle="modal" data-target="#modalExemplo">
+                    Excluir
+                </button>
+            </td>
+
         </tr>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmação da exclusão</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Deseja mesmo excluir esse pet ?</h4>
+                                <form th:action="@{/animal/excluir}" method="post">
+                                    <input type="hidden" name="codigo" id="codigo">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Não</button>
+                                    <button type="submit" class="btn btn-danger">Sim</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
     </table>
 </div>
 </body>
