@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+                              rel="stylesheet"/>
+
+</head>
+<body>
+<div class="alert alert-success" th:if="${msg != null}" th:text="${msg}">
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Aceita Animais</th>
+        <th>Data de abertura</th>
+    </tr>
+    <tr th:each="l:${lista}">
+        <td th:text="${l.nome}"></td>
+        <td th:text="${(l.aceitaAnimais) ? 'Sim':'Não'}"></td>
+        <td th:text="${#temporals.format(l.dataAbertura, 'dd/MM/yyyy')}"></td>
+        <td>
+            <a th:href="@{/hotel/editar/} + ${l.codigo}"
+               class="btn btn-outline-primary">Editar</a>
+            <button th:onclick="|codigo.value = ${l.codigo}|"  type="button" class="btn btn-sm btn-outline-danger btn-primary" data-toggle="modal" data-target="#modalExemplo">
+            Excluir
+            </button>
+        </td>
+    </tr>
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação da exclusão</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Deseja mesmo excluir esse pet ?</h4>
+                    <form th:action="@{/hotel/remover}" method="post">
+                        <input type="hidden" name="id" id="codigo">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</table>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

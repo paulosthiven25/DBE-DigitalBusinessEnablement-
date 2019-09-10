@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de hotéis</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/hotel/cadastrar}" method="post" th:object="${hotel}">
+        <input type="hidden" th:field="*{codigo}"/>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input th:field="*{nome}" type="text" id="nome" class="form-control"  />
+        </div>
+        <div class="form-group">
+            <label for="aceita">Aceita animais</label>
+            <input th:field="*{aceitaAnimais}" type="checkbox" id="aceita"/>
+        </div>
+
+        <div class="form-group">
+            <label for="data">Data de abertura</label>
+            <input th:field="*{dataAbertura}" type="text" id="data" class="form-control"  />
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Cadastrar">
+    </form>
+</div>
+</body>
+</html>
