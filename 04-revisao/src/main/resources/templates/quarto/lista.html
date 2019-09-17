@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Hoteis</title>
+</head>
+<body>
+
+<div layout:fragment="corpo">
+
+    <h1>Lista de Hotéis</h1>
+
+    <div th:if="${msg != null}" class="alert alert-success" th:text="${msg}"></div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Data Abertura</th>
+            <th>Aceita Animais</th>
+            <th></th>
+        </tr>
+        <tr th:each="q:${quartos}">
+            <td th:text="${q.numero}"></td>
+            <td th:text="${q.valor}"></td>
+            <td th:text="${q.suite?'Sim':'Não'}"></td>
+            <td th:text="${q.hotel.nome}"></td>
+            <!-- <td>
+                <a th:href="@{/hotel/alterar/} + ${h.codigo}" class="btn btn-outline-dark btn-sm">Alterar</a>
+                 Botão para acionar modal
+                <button th:onclick="|hotelCodigo.value = ${h.codigo}|" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalExemplo">
+                    Excluir
+                </button>
+            </td>-->
+        </tr>
+    </table>
+</div>
+</body>
+</html>
