@@ -1,6 +1,10 @@
 package br.com.fiap.revisao.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 @Entity
 @SequenceGenerator(name="reserva",sequenceName = "SQ_T_RESERVA", allocationSize = 1)
@@ -8,9 +12,13 @@ public class Reserva {
     @Id
     @GeneratedValue(generator = "reserva",strategy = GenerationType.SEQUENCE)
     private int codigo;
+    @NotBlank(message="Nome obrigatório")
     private String cliente;
+    @Min(value = 0,message = "Preço inválido")
     private double valorTotal;
+    @Future(message="Data inválida")
     private LocalDate dataInicio;
+    @Future(message="Data inválida")
     private LocalDate dataFim;
 
     @ManyToOne

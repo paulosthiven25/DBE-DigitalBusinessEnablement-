@@ -5,11 +5,14 @@ import br.com.fiap.revisao.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("hotel")
@@ -30,7 +33,12 @@ public class HotelController {
     }
 
     @PostMapping("salvar")
-    public String salvar(Hotel hotel, RedirectAttributes redirect){
+    public String salvar(@Valid Hotel hotel, BindingResult result, RedirectAttributes redirect){
+
+        if(result.hasErrors()){
+            return "hotel/form";
+        }
+
         redirect.addFlashAttribute("msg",hotel.getCodigo()==0?"Cadastrado!":"Atualizado!");
         repository.save(hotel);
         return "redirect:/hotel/listar";

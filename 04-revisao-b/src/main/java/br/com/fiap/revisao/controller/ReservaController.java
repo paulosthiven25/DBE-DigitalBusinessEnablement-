@@ -2,6 +2,7 @@ package br.com.fiap.revisao.controller;
 
 import br.com.fiap.revisao.model.Quarto;
 import br.com.fiap.revisao.model.Reserva;
+import br.com.fiap.revisao.repository.HotelRepository;
 import br.com.fiap.revisao.repository.QuartoRepository;
 import br.com.fiap.revisao.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReservaController {
     @Autowired
     QuartoRepository qr;
+    @Autowired
     ReservaRepository rr;
+    @Autowired
+    HotelRepository hr;
     @GetMapping("quartos")
     public String listarQuartosReserva(Model model){
 model.addAttribute("lista",qr.findAll());
+model.addAttribute("hoteis",hr.findAll());
         return "reserva/listaQuartos";
     }
 

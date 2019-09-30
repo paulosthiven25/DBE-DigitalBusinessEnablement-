@@ -1,6 +1,8 @@
 package br.com.fiap.revisao.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -10,11 +12,11 @@ public class Quarto {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quarto")
     private int codigo;
-
+    @NotBlank(message="Número de quarto obrigatório")
     private int numero;
 
     private boolean suite;
-
+    @Min(value = 0,message = "Preço inválido")
     private float valor;
 
     @OneToMany

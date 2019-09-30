@@ -1,6 +1,8 @@
 package br.com.fiap.revisao.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Entity
@@ -10,11 +12,11 @@ public class Hotel {
     @Id
     @GeneratedValue(generator = "hotel", strategy = GenerationType.SEQUENCE)
     private int codigo;
-
+    @NotBlank(message = "Nome obrigatório")
     private String nome;
 
     private boolean aceitaAnimais;
-
+    @Past(message="Data inválida,insira uma anterior a hoje")
     private LocalDate dataAbertura;
 
     public int getCodigo() {
