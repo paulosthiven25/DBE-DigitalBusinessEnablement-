@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de pedidos</title>
+</head>
+<body>
+<div layout:fragment="corpo">
+    <div th:if="${msg != null}" class="alert alert-success" th:text="${msg}"></div>
+    <table class="table table-striped table-success">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+        </tr>
+        <tr th:each="c:${cliente}">
+            <td th:text="${c.nome}"></td>
+            <td th:text="${c.email}"></td>
+            <td th:text="${c.cpf}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/pedido/cadastrar}" method="post" th:object="${pedido}">
+        <div class="form-group">
+            <label>Valor</label>
+            <input th:field="*{valor}" class="form-control" type="text">
+            <p th:errors="*{valor}" class="text-danger"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Data do pedido</label>
+            <input th:field="*{data}" class="form-control" type="date">
+            <p th:errors="*{data}" class="text-danger"></p>
+        </div>
+
+
+        <div class="form-group">
+            <label>quantidade</label>
+            <input th:field="*{pago}" class="form-control" type="number">
+            <p th:errors="*{pago}" class="text-danger"></p>
+        </div>
+        <input type="submit" value="Salvar" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>
